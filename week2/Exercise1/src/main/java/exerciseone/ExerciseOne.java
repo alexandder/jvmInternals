@@ -1,30 +1,14 @@
 package exerciseone;
 
-
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Date;
 
 class MyObject {
     public int x = 10;
-    public Date date = new Date(432234234L);
 
     public MyObject(int number) {
         this.x = number;
-    }
-
-    public MyObject(long ms) {
-        this.date = new Date(ms);
-    }
-
-    public int getX() {
-        x++;
-        return x;
-    }
-
-    public Date getDate() {
-        return date;
     }
 
     public int addToX(int y) {
