@@ -25,6 +25,12 @@ public class JsonConverterTest {
     }
 
     @Test
+    public void convertToJsonObjectBooleanFieldTest() throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+        ObjectBooleanField objectBooleanField = new ObjectBooleanField(true);
+        Assert.assertEquals("{\"test\": true}", jsonConverter.convertToJson(objectBooleanField));
+    }
+
+    @Test
     public void convertToJsonObjectPrivateIntFieldTest() throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         ObjectPrivateIntField objectPrivateIntegerField = new ObjectPrivateIntField();
         objectPrivateIntegerField.setX(12);
@@ -33,13 +39,8 @@ public class JsonConverterTest {
 
     @Test
     public void convertToJsonObjectSeveralPrimitiveFieldsTest() throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
-        ObjectSeveralPrimitiveFields objectSeveralPrimitiveFields = new ObjectSeveralPrimitiveFields();
-        objectSeveralPrimitiveFields.setMbyte((byte) 0b1101);
-        objectSeveralPrimitiveFields.setMchar('a');
-        objectSeveralPrimitiveFields.setMdouble(213.213);
-        objectSeveralPrimitiveFields.setMfloat(21.32f);
-        objectSeveralPrimitiveFields.setMlong(213L);
-        objectSeveralPrimitiveFields.setMshort((short) 12);
+        ObjectSeveralPrimitiveFields objectSeveralPrimitiveFields = new ObjectSeveralPrimitiveFields((short) 12, 213L, 21.32f, 213.213, (byte) 0b1101, 'a');
+
         Assert.assertEquals("{\"mshort\": 12, \"mlong\": 213, \"mfloat\": 21.32, \"mdouble\": 213.213, \"mbyte\": 13, \"mchar\": \"a\"}", jsonConverter.convertToJson(objectSeveralPrimitiveFields));
     }
 
@@ -53,6 +54,12 @@ public class JsonConverterTest {
     public void convertToJsonObjectPrivateIntegerTest() throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         ObjectPrivateIntegerField objectPrivateIntegerField = new ObjectPrivateIntegerField(new Integer(3));
         Assert.assertEquals("{\"x\": 3}", jsonConverter.convertToJson(objectPrivateIntegerField));
+    }
+
+    @Test
+    public void convertToJsonObjectSeveralWrapperFields() throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+        ObjectSeveralWrapperFields objectSeveralWrapperFields = new ObjectSeveralWrapperFields(new Character('e'), new Float(77.02f), new Byte((byte) 10), Boolean.FALSE);
+        Assert.assertEquals("{\"c\": \"e\", \"f\": 77.02, \"b\": 10, \"t\": false}", jsonConverter.convertToJson(objectSeveralWrapperFields));
     }
 
     @Test

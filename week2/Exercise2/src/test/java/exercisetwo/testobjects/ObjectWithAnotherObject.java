@@ -6,6 +6,9 @@ public class ObjectWithAnotherObject {
     private Double y;
     private ObjectPrivateIntField obj;
 
+    public ObjectWithAnotherObject() {
+    }
+
     public ObjectWithAnotherObject(Double y, ObjectPrivateIntField obj) {
         this.y = y;
         this.obj = obj;

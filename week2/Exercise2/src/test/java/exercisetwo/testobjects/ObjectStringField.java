@@ -5,6 +5,9 @@ public class ObjectStringField {
 
     private String s;
 
+    public ObjectStringField() {
+    }
+
     public ObjectStringField(String s) {
         this.s = s;
     }
